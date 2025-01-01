@@ -1,0 +1,57 @@
+<link rel="stylesheet" type="text/css" href="./styles.css" />
+<link rel="stylesheet" type="text/css" href="./toggle-style.css" />
+
+<div id="parede" class="container">
+  <img 
+    id="apagada" 
+    src="./off.png" 
+    alt="imagem apagada" 
+    class="imagem"
+  >
+  <img 
+    id="acesa" 
+    src="./on.png" 
+    alt="imagem acesa" 
+    class="imagem"
+  >
+
+  <div id="fio-conector"></div>
+
+  <div class="toggle-wrapper">
+    <div class="toggle normal">
+      <input id="normal" type="checkbox">
+      <label class="toggle-item" for="normal"></label>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const parede = document.getElementById('parede')
+  const apagada = document.getElementById('apagada')
+  const acesa = document.getElementById('acesa')
+  const fioConector = document.getElementById('fio-conector')
+  const input = document.getElementById('normal')
+
+  input.addEventListener('change', (event) => {
+    const target = event.target
+    const checked = target.checked;
+    const shouldTurnOn = !!checked 
+
+    if(shouldTurnOn) {
+      apagada.style.display = 'none'
+      acesa.style.display = 'initial'
+      parede.style.background = 'var(--cor-defundo-ativa)'
+      fioConector.style.background = 'var(--bg-ativo)'
+    }
+
+    if(!shouldTurnOn) {
+      apagada.style.display = 'initial'
+      acesa.style.display = 'none'
+      parede.style.background = 'var(--cor-defundo)'
+      fioConector.style.background = 'var(--fio-desligado)'
+    }
+  })
+
+  acesa.style.display ='none'
+</script>
