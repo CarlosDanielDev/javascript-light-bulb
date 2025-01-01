@@ -1,0 +1,56 @@
+:root {
+  --cor-defundo: rgba(0, 0, 0, 0.7);
+  --cor-ativa: #88cf8f;
+  --bg-ativo: #4caf50;
+  --cor-defundo-ativa: #ffffd1;
+  --fio-desligado: #000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+
+  background: var(--cor-defundo);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.imagem {
+  width: 400px;
+  height: 500px;
+  object-fit: contain;
+}
+
+#fio-conector {
+  height: 200px;
+  width: 10px;
+  background: var(--fio-desligado);
+}
+
+button {
+  width: 300px;
+  height: 100px;
+}
+
+input {
+  height: 40px;
+	left: 0;
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	width: 40px;
+}
+
+
+@media (min-width:1024px) {
+  .imagem  {
+    height: 400px;
+  }
+}
