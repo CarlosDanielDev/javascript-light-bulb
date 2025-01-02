@@ -4,17 +4,14 @@
       <!-- Lampada apagada -->
     <img 
       id="lampOff" 
-      src="./assets/off.png" 
       alt="imagem apagada" 
       class="lampImage"
     >
     <img 
       id="lampOn" 
-      src="./assets/on.png" 
       alt="imagem acesa" 
       class="lampImage"
     >
-
     <!-- Fio fixo e fio animado dentro dele -->
     <div id="wire-conector">
       <div id="wire-energy">
@@ -44,11 +41,18 @@
     displayInactive: 'none',
     on: 'var(--magic-wall-on)',
     off: 'var(--magic-wall-off)',
+    onImage: './assets/on.png',
+    offImage: './assets/off.png',
   }
 
   const magicWall = document.getElementById('magicWall')
+
   const lampOff = document.getElementById('lampOff')
+  lampOff.setAttribute('src', options.offImage)
+
   const lampOn = document.getElementById('lampOn')
+  lampOn.setAttribute('src', options.onImage)
+
   const wireFill = document.getElementById('wire-energy')
   const toggleSwitch = document.getElementById('toggleMagic')
 
