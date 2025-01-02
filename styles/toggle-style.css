@@ -26,6 +26,7 @@ label.toggle-item::before {
 
 .toggle-wrapper {
   position: relative;
+  transform: scale(2);
 }
 
 .toggle {
@@ -68,4 +69,11 @@ label.toggle-item::before {
 
 #toggleMagic:checked + label:before {
   left: 67px;
+}
+
+
+@media (min-width: 1024px) {
+  .toggle-wrapper {
+    transform: scale(1);
+  }
 }
