@@ -1,17 +1,16 @@
 <link rel="stylesheet" type="text/css" href="./styles/index.css" />
 <link rel="stylesheet" type="text/css" href="./styles/toggle-style.css" />
   <div id="magicWall" class="magicContainer">
-      <!-- Lampada apagada -->
+    <!-- Lampada apagada -->
     <img 
       id="lampOff" 
-      alt="imagem apagada" 
       class="lampImage"
     >
     <img 
       id="lampOn" 
-      alt="imagem acesa" 
       class="lampImage"
     >
+
     <!-- Fio fixo e fio animado dentro dele -->
     <div id="wire-conector">
       <div id="wire-energy">
@@ -43,15 +42,19 @@
     off: 'var(--magic-wall-off)',
     onImage: './assets/on.png',
     offImage: './assets/off.png',
+    altOnImage: 'lampada acesa',
+    altOffImage: 'lampada apagada',
   }
 
   const magicWall = document.getElementById('magicWall')
 
   const lampOff = document.getElementById('lampOff')
   lampOff.setAttribute('src', options.offImage)
+  lampOff.setAttribute('alt', options.altOffImage)
 
   const lampOn = document.getElementById('lampOn')
   lampOn.setAttribute('src', options.onImage)
+  lampOn.setAttribute('alt', options.altOnImage)
 
   const wireFill = document.getElementById('wire-energy')
   const toggleSwitch = document.getElementById('toggleMagic')
