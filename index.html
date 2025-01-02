@@ -1,16 +1,16 @@
-<link rel="stylesheet" type="text/css" href="./styles.css" />
-<link rel="stylesheet" type="text/css" href="./toggle-style.css" />
+<link rel="stylesheet" type="text/css" href="./styles/index.css" />
+<link rel="stylesheet" type="text/css" href="./styles/toggle-style.css" />
   <div id="magicWall" class="magicContainer">
       <!-- Lampada apagada -->
     <img 
       id="lampOff" 
-      src="./off.png" 
+      src="./assets/off.png" 
       alt="imagem apagada" 
       class="lampImage"
     >
     <img 
       id="lampOn" 
-      src="./on.png" 
+      src="./assets/on.png" 
       alt="imagem acesa" 
       class="lampImage"
     >
@@ -30,104 +30,20 @@
     </div>
   </div>
 
-<script defer>
+<script src="./js/lamp-toggler.js"></script>
 
+<script src="./js/wire-animator.js"></script>
+
+<script src="./js/app.js"></script>
+
+<script src="./js/builder.js"></script>
+
+<script defer>
   const options = {
     displayActive: 'initial',
     displayInactive: 'none',
     on: 'var(--magic-wall-on)',
     off: 'var(--magic-wall-off)',
-  }
-
-  function createLampToggler({ lampOff, lampOn, magicWall }) {
-    // Acende a lâmpada
-    function turnOn() {
-      lampOff.style.display = options.displayInactive 
-
-      lampOn.style.display = options.displayActive
-
-      magicWall.style.background = options.on 
-    }
-
-    // Apaga a lâmpada
-    function turnOff() {
-      lampOn.style.display = options.displayInactive
-
-      lampOff.style.display = options.displayActive  
-
-      magicWall.style.background = options.off 
-    }
-
-    // Retornamos as duas funções (poderíamos ter mais, se quiséssemos)
-    return { turnOn, turnOff }
-  }
-
-  function createWireAnimator({ wireFill, duration, lampToggler }) {
-    
-    // “animate” faz o fio crescer até 100% ou encolher até 0%
-    function animate({ isOn }) {
-      let start = null
-
-      // Altura inicial (se “vazio”, considera 0)
-      const initialHeight = parseFloat(wireFill.style.height) || 0
-
-      // Altura final (0% se for desligar, 100% se for ligar)
-      const targetHeight = isOn ? 100 : 0
-
-      // Diferença que precisamos percorrer
-      const delta = targetHeight - initialHeight
-
-      // Função que o requestAnimationFrame chamará várias vezes
-      function step(timestamp) {
-
-        // Se não temos um start, definimos agora
-        if (!start) {
-          start = timestamp
-        }
-
-        // Quanto tempo passou
-        const elapsed = timestamp - start
-
-        // Fator de progresso (0 a 1)
-        const progress = Math.min(elapsed / duration, 1)
-
-        // Altura atual = inicial + delta * progresso
-        const currentHeight = initialHeight + delta * progress
-        wireFill.style.height = currentHeight + '%'
-
-        // Se ainda não terminou, pede outro quadro de animação e sai
-        if (progress < 1) {
-          requestAnimationFrame(step)
-          return
-        }
-
-        // Ao chegar no final da animação, ligamos ou desligamos a lâmpada:
-        isOn 
-          ? lampToggler.turnOn() 
-          : lampToggler.turnOff()
-      }
-
-      // Começamos a animação
-      requestAnimationFrame(step)
-    }
-
-    return { animate }
-  }
-
-
-  function createMagicApp({ lampToggler, wireAnimator, toggleSwitch }) {
-    function init() {
-      // Inicialmente, deixa o fio em 0% e a lâmpada apagada
-      wireAnimator.animate({ isOn: false })
-
-      // Escuta o checkbox “ligar/desligar”
-      toggleSwitch.addEventListener('change', (event) => {
-        const isOn = event.target.checked
-        wireAnimator.animate({ isOn })
-      })
-    }
-
-    return { init }
   }
 
   const magicWall = document.getElementById('magicWall')
@@ -136,30 +52,14 @@
   const wireFill = document.getElementById('wire-energy')
   const toggleSwitch = document.getElementById('toggleMagic')
 
-  // Criamos a fábrica lampToggler com as dependências
-  const lampToggler = createLampToggler({ 
-    lampOff, 
-    lampOn, 
-    magicWall 
+  const app = appBuilder({
+    createMagicApp,
+    createWireAnimator,
+    magicWall, createLampToggler,
+    lampOff,
+    lampOn,
+    toggleSwitch, wireFill, options
   })
 
-  // Criamos a fábrica wireAnimator, passando o tempo de 2s e lampToggler
-  const wireAnimator = createWireAnimator({ 
-    wireFill, 
-    duration: 2000, 
-    lampToggler 
-  })
-
-  // Criamos a app que junta tudo: 
-  const magicApp = createMagicApp({
-    lampToggler,
-    wireAnimator,
-    toggleSwitch
-  })
-
-  // Iniciamos a app
-  magicApp.init()
-
-  // definimos que o padrão quando a aplicação carregar, vai ser com a lampada apagada: 
-  lampToggler.turnOff()
+  app.start()
 </script>
