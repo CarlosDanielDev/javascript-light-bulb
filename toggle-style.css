@@ -66,8 +66,6 @@ label.toggle-item::before {
   background: var(--bg-ativo);
 }
 
-
 #normal:checked + label:before {
   left: 67px;
-
 }
