@@ -1,3 +1,10 @@
-## Javascript Light Bulb
+# Web Light Bulb
 
-Projetinho da Helena Di Paula.
+Essa projeto é uma lâmpada virtual feita com as tecnologias:
+
+- HTML
+- CSS
+- Javascript
+
+
+> Sinta-se livre para fazer o fork, clonar e contribuir!
