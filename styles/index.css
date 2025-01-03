@@ -27,8 +27,7 @@
 
 .lampImage {
   width: 400px;
-  height: 500px;
-  object-fit: contain;
+  height: 400px;
 }
 
 #wire-conector {
