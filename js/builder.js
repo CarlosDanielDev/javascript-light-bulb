@@ -3,19 +3,24 @@ function appBuilder({
   createWireAnimator,
   createMagicApp,
   magicWall,
-  lampOff,
-  lampOn,
   toggleSwitch,
   wireFill,
-  options
+  lampContainer,
+  options,
 }) {
 
-  function start() {
+  function applyTheme(themeObject) {
+    const root = document.documentElement
+    Object.entries(themeObject).forEach(([varName, varValue]) => {
+      root.style.setProperty(varName, varValue)
+    })
+  }
+
+  async function start() {
     // Criamos a fábrica lampToggler com as dependências
-    const lampToggler = createLampToggler({
-      lampOff,
-      lampOn,
+    const lampToggler = await createLampToggler({
       magicWall,
+      lampContainer,
       options,
     })
 
@@ -40,5 +45,5 @@ function appBuilder({
     lampToggler.turnOff()
   }
 
-  return { start }
+  return { start, applyTheme }
 }
