@@ -69,7 +69,7 @@ NrRFi9wrf+M7Q== schacon@mylaptop.local
 ```
 
 Para ver um tutorial mais detalhado sobre a criação de chaves `SSH` em diversos sistemas operacionais, 
-veja o guia do GitHub sobre chaves SSH em [CONECTANDO NO GITUB COM SSH](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh).
+veja o guia do GitHub sobre chaves SSH em [CONECTANDO NO GITHUB COM SSH](https://docs.github.com/pt/authentication/connecting-to-github-with-ssh).
 
 - Adicionar a chave pública ao GitHub em **Settings > SSH and GPG keys**.
 	- Clonar com SSH:
