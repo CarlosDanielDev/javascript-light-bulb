@@ -9,10 +9,10 @@
 
 ### **2. Configurar o Ambiente Local**
 
-1. **Clonar o Repositório:**
+#### **Clonar o Repositório:**
 	- Se for usar HTTPS:
 ```bash
-    git clone https://github.com/CarlosDanielDev/javascript-light-bulb.git
+$    git clone https://github.com/CarlosDanielDev/javascript-light-bulb.git
 ```
 
 - Se for usar SSH (recomendado):
@@ -58,7 +58,6 @@ Agora, cada usuário que tenha feito os passos acima deve enviar sua chave públ
 Tudo que o administrador precisa fazer é copiar o conteúdo do arquivo `.pub` e enviá-lo por e-mail. A chave tem mais ou menos esta aparência:
 
 ```bash
-
 $ cat ~/.ssh/id_rsa.pub
 ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAklOUpkDHrfHY17SbrmTIpNLTGK9Tjom/BWDSU
 GPl+nafzlHDTYW7hdI4yZ5ew18JH4JW9jbhUFrviQzM7xlELEVf4h9lFX5QVkbPppSwg0cda3
@@ -74,12 +73,12 @@ veja o guia do GitHub sobre chaves SSH em [CONECTANDO NO GITHUB COM SSH](https:/
 - Adicionar a chave pública ao GitHub em **Settings > SSH and GPG keys**.
 	- Clonar com SSH:
 ```bash
-    git clone git@github.com:CarlosDanielDev/javascript-light-bulb.git
+$ git clone git@github.com:CarlosDanielDev/javascript-light-bulb.git
 ```
 
-2. **Entrar na pasta do repositório:**
+2. **Entrar na pasta o repositório:**
 ```bash
-git push origin nome-da-feature
+$ cd javascript-light-bulb
 ```
 
 ---
@@ -88,15 +87,17 @@ git push origin nome-da-feature
 
 - Certificar-se de estar na branch `main`:
 ```bash
-git checkout main
+$ git checkout main
 ```
+
 - Atualizar a branch local com as últimas mudanças:
 ```bash
-git pull origin main
+$ git pull origin main
 ```
+
 - Criar uma nova branch para as alterações:
 ```bash
-git push origin nome-da-feature
+$ git branch nome-da-branch
 ```
 
 ---
@@ -111,12 +112,12 @@ git push origin nome-da-feature
 
 1. **Adicionar as alterações ao staging:**
 ```bash
-git add .
+$ git add .
 ```
 
 2. **Criar um commit com uma mensagem descritiva:**
 ```bash
-git push origin nome-da-feature
+$ git commit -m "minha feature" 
 ```
 
 ---
@@ -124,7 +125,7 @@ git push origin nome-da-feature
 
 - Fazer o push da branch para o repositório remoto:
 ```bash
-git push origin nome-da-feature
+$ git push origin nome-da-feature
 ```
 ---
 
@@ -149,7 +150,7 @@ git push origin nome-da-feature
 
 - Após o `merge`, o colaborador pode deletar a `branch` local e `remota`:
 ```bash
-git branch -d nome-da-feature git push origin --delete nome-da-feature
+$ git branch -d nome-da-feature git push origin --delete nome-da-feature
 ```
 ---
 
