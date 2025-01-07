@@ -1,6 +1,12 @@
 <link rel="stylesheet" type="text/css" href="./styles/index.css" />
 <link rel="stylesheet" type="text/css" href="./styles/toggle-style.css" />
   <div id="magicWall" class="magicContainer">
+
+    <select id="combobox">
+      <option value="dark">ThemeDark</option>
+      <option value="light">ThemeLight</option>
+    </select>
+
     <!-- Lampada apagada -->
   <div id="lamp-container">
 
@@ -136,7 +142,21 @@
     options,
   })
 
-  app.applyTheme(themeDark)
+document.addEventListener('DOMContentLoaded', (event) => {
+  const combobox = document.getElementById('combobox');
+
+  combobox.addEventListener('change', () => {
+      if (combobox.value == "light") {
+        app.applyTheme(themeLight)
+        combobox.classList.add("combobox_light")
+        combobox.classList.remove("combobox_dark") 
+    } else if (combobox.value == "dark") {
+        app.applyTheme(themeDark)
+        combobox.classList.add("combobox_dark")
+        combobox.classList.remove("combobox_light")
+        }
+    });
+});
 
   app.start()
 </script>
