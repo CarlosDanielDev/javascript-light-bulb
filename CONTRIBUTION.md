@@ -10,7 +10,7 @@
 ### **2. Configurar o Ambiente Local**
 
 #### **Clonar o Repositório:**
-	- Se for usar HTTPS:
+- Se for usar HTTPS:
 ```bash
 $    git clone https://github.com/CarlosDanielDev/javascript-light-bulb.git
 ```
