@@ -34,6 +34,16 @@
   background: var(--wire-on);
 }
 
+.combobox_dark {
+  color: #fff;
+  background-color: #000;
+}
+
+.combobox_light {
+  color: #000;
+  background-color: #fff;
+}
+
 button {
   width: 300px;
   height: 100px;
