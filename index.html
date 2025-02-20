@@ -2,10 +2,23 @@
 <link rel="stylesheet" type="text/css" href="./styles/toggle-style.css" />
   <div id="magicWall" class="magicContainer">
 
-    <select id="combobox">
-      <option value="dark">ThemeDark</option>
-      <option value="light">ThemeLight</option>
-    </select>
+    <div id="themeSwitch">
+        <select id="combobox">
+        <option value="dark">ThemeDark</option>
+        <option value="light">ThemeLight</option>
+      </select>
+    </div>
+
+    <div id="linkShortner">
+      <label for="url" id="labelUrl">Digite a URL para encurtar:</label>
+    <input type="text" id="url" placeholder="Cole sua URL aqui">
+    <button id="buttonUrl" onclick="enviarUrl()">Encurtar URL</button>
+    
+    <h4 id="messageUrl">URL Encurtada:</h4>
+    <p id="resultado"></p>
+    </div>
+
+    
 
     <!-- Lampada apagada -->
   <div id="lamp-container">
@@ -98,6 +111,39 @@
 
 <script src="./js/builder.js"></script>
 
+<script>
+  async function enviarUrl() {
+      const url = document.getElementById("url").value;
+      
+      // Verifica se a URL foi informada
+      if (!url) {
+          alert("insira uma URL");
+          return;
+      }
+
+      try {
+          const response = await fetch('http://localhost:3000/encurtar', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+              },
+              body: JSON.stringify({ url: url })
+          });
+          
+          const data = await response.json();
+
+          if (data.success) {
+              document.getElementById("resultado").textContent = data.shortenedUrl;
+          } else {
+              alert("Erro ao encurtar a URL.");
+          }
+      } catch (error) {
+          console.error("Erro:", error);
+          alert("Erro ao tentar conectar com a API.");
+      }
+  }
+</script> 
+
 <script defer>
   const themeDark = {
     '--magic-wall-off': 'rgba(0, 0, 0, 0.8)',
@@ -144,16 +190,37 @@
 
 document.addEventListener('DOMContentLoaded', (event) => {
   const combobox = document.getElementById('combobox');
+  const buttonUrl = document.getElementById('buttonUrl');
+  const inputUrl = document.getElementById('url');
+
 
   combobox.addEventListener('change', () => {
       if (combobox.value == "light") {
-        app.applyTheme(themeLight)
-        combobox.classList.add("combobox_light")
-        combobox.classList.remove("combobox_dark") 
+        app.applyTheme(themeLight);
+        combobox.classList.add("light");
+        combobox.classList.remove("dark");
+        
+        inputUrl.classList.add("light");
+        inputUrl.classList.remove("dark");
+        
+        buttonUrl.classList.add("light");
+        buttonUrl.classList.remove("dark");
+        
+        
+
+        
     } else if (combobox.value == "dark") {
-        app.applyTheme(themeDark)
-        combobox.classList.add("combobox_dark")
-        combobox.classList.remove("combobox_light")
+        app.applyTheme(themeDark);
+        combobox.classList.add("dark");
+        combobox.classList.remove("light");
+
+        inputUrl.classList.add("dark");
+        inputUrl.classList.remove("light");
+        
+        buttonUrl.classList.add("dark");
+        buttonUrl.classList.remove("light");
+        
+        
         }
     });
 });
