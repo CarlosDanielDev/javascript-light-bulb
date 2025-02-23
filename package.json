@@ -1,0 +1,17 @@
+{
+  "name": "javascript-light-bulb",
+  "version": "1.0.0",
+  "description": "Essa projeto é uma lâmpada virtual feita com as tecnologias:",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "shortid": "^2.2.17"
+  }
+}
