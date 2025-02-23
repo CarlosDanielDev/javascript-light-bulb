@@ -25,7 +25,6 @@ app.post('/encurtar', (req, res) => {
     const shortenedId = shortid.generate();
     urls[shortenedId] = url;
 
-    // Retornar a URL encurtada
     const shortenedUrl = `http://localhost:3000/${shortenedId}`;
     res.json({ success: true, shortenedUrl });
 });
